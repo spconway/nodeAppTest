@@ -1,20 +1,20 @@
-var express           = require('express');
-var path              = require('path');
-var favicon           = require('serve-favicon');
-var morgan            = require('morgan');
-var logger            = require('./config/logger');
-var cookieParser      = require('cookie-parser');
-var bodyParser        = require('body-parser');
-var session           = require('express-session');
-var i18n              = require('./config/i18n');
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var morgan = require('morgan');
+var logger = require('./config/logger');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var i18n = require('./config/i18n');
 //var expressValidator  = require('./config/expressValidator');
 //var flash             = require('./config/flash');
 //var passport          = require('./config/passport');
-var routes            = require('./routes/config');
-var app               = express();
+var routes = require('./routes/config');
+var app = express();
 
 // initialize logging middleware
-app.use(morgan("combined", { "stream": logger.stream } ));
+app.use(morgan("combined", { "stream": logger.stream }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,9 +33,9 @@ i18n.init(app);
 
 // Express session
 app.use(session({
-  secret: 'secret',
-  saveUninitialized: true,
-  resave: true
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
 }));
 
 /* Leaving space here for passport initialization */
@@ -43,22 +43,27 @@ app.use(session({
 // route configuration
 routes.init(app);
 
+// catch all other routes and redirect
+app.get('*', function(req, res) {
+    res.redirect('/');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

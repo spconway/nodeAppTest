@@ -1,4 +1,8 @@
 {
-	"LOGIN_TITLE": "Login",
-	"HOME_TITLE": "Home"
+    "LOGIN_TITLE": "Login",
+    "HOME_TITLE": "Home",
+    "INDEX_TITLE": "Index",
+    "CHAT_TITLE": "Chat",
+    "ERROR_TITLE": "Error",
+    "TWITCH_TITLE": "Twitch Stuff"
 }
