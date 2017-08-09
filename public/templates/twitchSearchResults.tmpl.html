@@ -1,0 +1,7 @@
+<div ng-repeat="result in twitch.twitchSearchResults.channels" style="display:inline-block;">
+    <div>
+        <a ng-href="{{result.url}}" class="thumbnail" target="_blank">
+            <img class="img-responsive" ng-src="{{result.video_banner}}" style="width:300px;height:173px;">
+        </a>
+    </div>
+</div>
