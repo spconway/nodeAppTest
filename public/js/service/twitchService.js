@@ -1,4 +1,4 @@
-function twitchService($http) {
+function twitchService($http, $q) {
 
     // Return public API.
     return ({
@@ -10,11 +10,23 @@ function twitchService($http) {
             method: 'GET',
             url: searchParam,
             headers: {
-                'Client-id': clientID
+                'Client-id': clientID,
+                'Accept': 'application/vnd.twitchtv.v5+json'
             },
         });
 
         return (request.then(handleSuccess, handleError));
+    }
+
+    /**
+     * 1. Make service call by setting limit to maximum (100). Default sort is asc.
+     * 2. Make another service call by setting limit to maximum (100) and setting offset
+     *    to 100. Documentation does not specify a limit for offset so set offset to maximum.
+     * 3. Continue until results are less than maximum which indicate no more return data if
+     *    any more service calls are made.
+     */
+    function getAllSubsByChannel(searchParam, clientID){
+
     }
 
     function handleSuccess(response) {
@@ -36,4 +48,4 @@ function twitchService($http) {
     }
 }
 
-app.service("twitchService", twitchService)
+app.service("twitchService", twitchService);
