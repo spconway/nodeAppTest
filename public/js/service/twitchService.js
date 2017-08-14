@@ -2,7 +2,10 @@ function twitchService($http, $q) {
 
     // Return public API.
     return ({
-        searchByChannel: searchByChannel
+        searchByChannel: searchByChannel,
+        searchSubsByChannel: searchSubsByChannel,
+        searchAllLiveStreams: searchAllLiveStreams,
+        searchVods: searchVods
     });
 
     function searchByChannel(searchParam, clientID) {
@@ -12,7 +15,7 @@ function twitchService($http, $q) {
             headers: {
                 'Client-id': clientID,
                 'Accept': 'application/vnd.twitchtv.v5+json'
-            },
+            }
         });
 
         return (request.then(handleSuccess, handleError));
@@ -25,8 +28,43 @@ function twitchService($http, $q) {
      * 3. Continue until results are less than maximum which indicate no more return data if
      *    any more service calls are made.
      */
-    function getAllSubsByChannel(searchParam, clientID){
+    function searchSubsByChannel(url, clientID){
+        var request = $http({
+            method: 'GET',
+            url: url,
+            headers: {
+                'Client-id': clientID,
+                'Accept': 'application/vnd.twitchtv.v5+json'
+            }
+        });
 
+        return (request.then(handleSuccess, handleError));
+    }
+
+    function searchVods(url, clientID){
+        var request = $http({
+            method: 'GET',
+            url: url,
+            headers: {
+                'Client-id': clientID,
+                'Accept': 'application/vnd.twitchtv.v5+json'
+            }
+        });
+
+        return (request.then(handleSuccess, handleError));
+    }
+
+    function searchAllLiveStreams(url, clientID){
+        var request = $http({
+            method: 'GET',
+            url: url,
+            headers: {
+                'Client-id': clientID,
+                'Accept': 'application/vnd.twitchtv.v5+json'
+            }
+        });
+
+        return (request.then(handleSuccess, handleError));
     }
 
     function handleSuccess(response) {

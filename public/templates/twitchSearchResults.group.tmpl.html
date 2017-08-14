@@ -1,0 +1,45 @@
+<div ng-if="result.video_banner">
+    <div uib-accordion-header style="width: 100%;">
+        <img class="img-responsive" ng-src="{{result.video_banner}}">
+    </div>
+    <div uib-accordion-group class="panel-default" heading="{{result.name}}">
+        <table>
+            <tr>
+                <td>Playing:</td>
+                <td ng-bind="result.game"></td>
+            </tr>
+            <tr>
+                <td>Visit stream:</td>
+                <td><a ng-href="{{result.channel.url}}" target="_new">Go!</a></td>
+            </tr>
+            <tr>
+                <td>Channel id:</td>
+                <td ng-bind="result._id" ng-model="twitch.channelID"></td>
+            </tr>
+        </table>
+        <button class="btn btn-default" ng-click="twitch.channelMoreDetails(twitch.channelID)">More Details</button>
+    </div>
+</div>
+<!--if live-->
+<div ng-if="result.stream_type==='live'">
+    <div uib-accordion-header style="width: 100%;">
+        <img class="img-responsive" ng-src="{{result.preview.large}}">
+    </div>
+    <div uib-accordion-group class="panel-default" heading="{{result.channel.name}}">
+        <table>
+            <tr>
+                <td>Playing:</td>
+                <td ng-bind="result.game"></td>
+            </tr>
+            <tr>
+                <td>Visit stream:</td>
+                <td><a ng-href="{{result.channel.url}}" target="_new">Go!</a></td>
+            </tr>
+            <tr>
+                <td>Channel id:</td>
+                <td ng-bind="result._id"></td>
+            </tr>
+        </table>
+        <button class="btn btn-default" ng-click="twitch.channelMoreDetails(result._id)">More Details</button>
+    </div>
+</div>

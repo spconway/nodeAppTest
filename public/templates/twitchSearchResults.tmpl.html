@@ -1,7 +1,10 @@
-<div ng-repeat="result in twitch.twitchSearchResults.channels" style="display:inline-block;">
-    <div>
-        <a ng-href="{{result.url}}" class="thumbnail" target="_blank">
-            <img class="img-responsive" ng-src="{{result.video_banner}}" style="width:300px;height:173px;">
-        </a>
-    </div>
+<div class="row">
+    <uib-accordion close-others="twitch.oneAtATime">
+        <div ng-repeat="result in twitch.twitchSearchResults.data track by $index"
+             style="vertical-align:top;"
+             class="col-lg-3 col-md-3 col-sm-4 col-xs-6 panel-default tsresults"
+             ng-show="result.video_banner != null || result.stream_type === 'live'">
+            <twitch-search-results-group></twitch-search-results-group>
+        </div>
+    </uib-accordion>
 </div>

@@ -1,0 +1,13 @@
+.tsresults{
+    padding-bottom: 15px;
+    float: none !important;
+    display: inline-block !important;
+}
+
+.row-md-marg-bot{
+    margin-bottom: 50px;
+}
+
+.row-lg-marg-bot{
+    margin-bottom: 100px;
+}

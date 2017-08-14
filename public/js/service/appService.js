@@ -1,16 +1,19 @@
 /**
  * Created by Spconway on 8/9/17.
  */
-function appService($http, $q){
+function appService($http, $q) {
+
     return ({
         getRoutes: getRoutes
     });
 
-    function getRoutes(){
+    function getRoutes() {
         var request = $http({
             method: 'GET',
             url: '/api/paths/all'
         });
+
+        navLoaded = 1;
 
         return (request.then(handleSuccess, handleError));
     }

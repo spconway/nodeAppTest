@@ -1,7 +1,7 @@
-function indexCtrl() {
+function indexCtrl(appService) {
     var self = this;
 
-    self.label = 'tadaaa';
+    self.label = '';
 }
 
 app.controller('indexCtrl', indexCtrl);
